@@ -1,0 +1,72 @@
+# Server Configuration
+server:
+  port: 9090
+  servlet:
+    context-path: /exam-portal-api
+
+# Database Configuration (MySQL)
+spring:
+  # Datasource configuration
+  datasource:
+    url: CHANGE_ME_IN_LOCAL_CONFIG
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: CHANGE_ME_IN_LOCAL_CONFIG
+    password: CHANGE_ME_IN_LOCAL_CONFIG
+  
+  # JPA Configuration
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  # Mail Configuration (for production, configure with real SMTP settings)
+  mail:
+    enabled: false  # Set to true in production
+    host: smtp.gmail.com
+    port: 587
+    username: CHANGE_ME_IN_LOCAL_CONFIG
+    password: CHANGE_ME_IN_LOCAL_CONFIG
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# Swagger/OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    try-it-out-enabled: true
+
+# JWT Configuration
+jwt:
+  secret: CHANGE_ME_IN_LOCAL_CONFIG
+  expiration: 86400000
+
+# CORS Configuration
+cors:
+  allowed-origins: http://localhost:4200
+
+# Application Configuration
+app:
+  frontend:
+    url: http://localhost:4200
+
+# Logging
+logging:
+  level:
+    com.niranzan.exam: INFO
+    org.springframework.security: INFO
+    org.hibernate: WARN
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
